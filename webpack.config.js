@@ -32,6 +32,6 @@ module.exports = validate({
             include: /src/,
             loader: 'babel'
         }]
-    },
+    }
 
 })

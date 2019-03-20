@@ -5,12 +5,16 @@ import Title from './title'
 import Square from './square'
 import LikeButton from './like-button'
 import SearchButton from './search-button'
+import Button from './button'
+import Timer from './timer'
 
 class App extends Component {
     constructor() {
         super()
         this.state = {
-            text: 'João'
+            text: 'João',
+            color: 'purple',
+            showTimer: true
         }
     }
     render() {
@@ -19,15 +23,36 @@ class App extends Component {
             //     alert('clicou');
             // }}
             <div className="container">
-                <div onClick={() => { this.setState({ text: 'Vinicius' }) }}>{this.state.text}</div>
+                {this.state.showTimer && <Timer />}
+                <Button handleClick={ () => {
+                        this.setState({showTimer: !this.state.showTimer})
+                    }}>
+                    Show/HideTimer
+                </Button>
+                <Square color={this.state.color} />
+                {
+                    ['blue', 'red', 'green'].map((color, index) => (
+                        <Button
+                            key={index}
+                            handleClick={() => {
+                                return this.setState({ color })
+                            }}>
+                            {color}
+                        </Button>
+                    ))
+                }
+
+                <div onClick={() => { this.setState({ text: `${this.state.text === 'Vinicius' ? 'Joao' : 'Vinicius'}` }) }}>{this.state.text}</div>
                 <LikeButton />
                 <SearchButton />
                 <Title name='Vinicius' lastname='R Castro' />
-                {['blue', 'red', 'green'].map((square, index) => (
-                    <Square key={index} color={square} />
-                ))}
+                {
+                    ['blue', 'red', 'green'].map((square, index) => (
+                        <Square key={index} color={square} />
+                    ))
+                }
 
-            </div>
+            </div >
         )
     }
 }
