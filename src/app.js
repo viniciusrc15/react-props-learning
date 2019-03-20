@@ -3,16 +3,30 @@
 import React, { Component } from 'react'
 import Title from './title'
 import Square from './square'
+import LikeButton from './like-button'
+import SearchButton from './search-button'
 
 class App extends Component {
+    constructor() {
+        super()
+        this.state = {
+            text: 'João'
+        }
+    }
     render() {
         return (
+            // onClick={() => {
+            //     alert('clicou');
+            // }}
             <div className="container">
+                <div onClick={() => { this.setState({ text: 'Vinicius' }) }}>{this.state.text}</div>
+                <LikeButton />
+                <SearchButton />
                 <Title name='Vinicius' lastname='R Castro' />
-                {['blue', 'red', 'green'].map((square) => (
-                    <Square key={square} color={square}/>
+                {['blue', 'red', 'green'].map((square, index) => (
+                    <Square key={index} color={square} />
                 ))}
-                
+
             </div>
         )
     }
