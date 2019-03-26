@@ -16,7 +16,8 @@ class App extends Component {
             color: 'purple',
             showTimer: true,
             time: 10,
-            value: 'Input React'
+            value: 'Input React',
+            check: false
         }
     }
     render() {
@@ -49,9 +50,19 @@ class App extends Component {
 
 
                 <form>
-                    <input type="text" value={this.state.value} onChange={(e) => {
+                    <input type="text" value={this.state.value} onChange={(e) => { // defaultValue='teste' se nao quiser passar value nem onChange
                         this.setState({ value: e.target.value })
                     }} />
+                    <label>
+                        <input type="checkbox" value="my-checkbox" checked={this.state.check} //defaultChecked mesmo de cima
+                            onChange={(e) => {
+                                this.setState({ check: e.target.checked })
+                            }}
+                        />
+                        Meu checkbox
+                    </label>
+                    <input type="radio" name="rd" value="1" defaultChecked/> Radio 1
+                    <input type="radio" name="rd" value="2"/> Radio 1
                 </form>
 
                 <LikeButton />
