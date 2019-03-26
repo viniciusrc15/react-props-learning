@@ -15,7 +15,8 @@ class App extends Component {
             text: 'João',
             color: 'purple',
             showTimer: true,
-            time: 10
+            time: 10,
+            value: 'Input React'
         }
     }
     render() {
@@ -24,13 +25,13 @@ class App extends Component {
             //     alert('clicou');
             // }}
             <div className="container">
-                {this.state.showTimer && <Timer time={this.state.time}/>}
-                <Button handleClick={ () => {
-                        this.setState({showTimer: !this.state.showTimer})
-                    }}>
+                {this.state.showTimer && <Timer time={this.state.time} />}
+                <Button handleClick={() => {
+                    this.setState({ showTimer: !this.state.showTimer })
+                }}>
                     Show/HideTimer
                 </Button>
-                <Button handleClick={()=> this.setState({time: 10 + this.state.time})}> Change time </Button>
+                <Button handleClick={() => this.setState({ time: 10 + this.state.time })}> Change time </Button>
                 <Square color={this.state.color} />
                 {
                     ['blue', 'red', 'green'].map((color, index) => (
@@ -45,6 +46,14 @@ class App extends Component {
                 }
 
                 <div onClick={() => { this.setState({ text: `${this.state.text === 'Vinicius' ? 'Joao' : 'Vinicius'}` }) }}>{this.state.text}</div>
+
+
+                <form>
+                    <input type="text" value={this.state.value} onChange={(e) => {
+                        this.setState({ value: e.target.value })
+                    }} />
+                </form>
+
                 <LikeButton />
                 <SearchButton />
                 <Title name='Vinicius' lastname='R Castro' />

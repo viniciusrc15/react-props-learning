@@ -12,4 +12,8 @@ Button.defaultProps = {
     margin: '10px'
 }
 
+Button.protoTypes = {
+    handleClick: React.PropTypes.func.isRequired // define os tipos e parametros de props
+}
+
 export default Button
