@@ -17,7 +17,8 @@ class App extends Component {
             showTimer: true,
             time: 10,
             value: 'Input React',
-            check: false
+            check: false,
+            valueSelect: 2
         }
     }
     render() {
@@ -49,20 +50,40 @@ class App extends Component {
                 <div onClick={() => { this.setState({ text: `${this.state.text === 'Vinicius' ? 'Joao' : 'Vinicius'}` }) }}>{this.state.text}</div>
 
 
-                <form>
+                <form
+                    onSubmit={(e) => {
+                        e.preventDefault()
+                        console.log(e)
+                    }}
+
+                    onChange={(e) => {
+                        console.log(e.target.value);
+                    }}
+                >
                     <input type="text" value={this.state.value} onChange={(e) => { // defaultValue='teste' se nao quiser passar value nem onChange
                         this.setState({ value: e.target.value })
                     }} />
                     <label>
                         <input type="checkbox" value="my-checkbox" checked={this.state.check} //defaultChecked mesmo de cima
-                            onChange={(e) => {
+                            onChange={(e) => {      // checkbox e radio funciona onClick
                                 this.setState({ check: e.target.checked })
                             }}
                         />
                         Meu checkbox
                     </label>
-                    <input type="radio" name="rd" value="1" defaultChecked/> Radio 1
-                    <input type="radio" name="rd" value="2"/> Radio 1
+                    <input type="radio" name="rd" value="1" defaultChecked /> Radio 1
+                    <input type="radio" name="rd" value="2" /> Radio 1
+
+                    <select value={this.state.valueSelect} onChange={(e) => { // multiple
+                        this.setState({ valueSelect: e.target.value })
+                    }}>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                    </select>
+
+                    <textarea defaultValue={'teste\nteste'} />
+                    <button type="submit">enviar</button>
                 </form>
 
                 <LikeButton />
