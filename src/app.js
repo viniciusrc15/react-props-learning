@@ -7,6 +7,7 @@ import LikeButton from './like-button'
 import SearchButton from './search-button'
 import Button from './button'
 import Timer from './timer'
+import { runInThisContext } from 'vm';
 
 class App extends Component {
     constructor() {
@@ -18,6 +19,8 @@ class App extends Component {
             time: 10,
             value: 'Input React',
             check: false,
+            showContet: false,
+            checked: false,
             valueSelect: 2
         }
     }
@@ -94,6 +97,18 @@ class App extends Component {
                         <Square key={index} color={square} />
                     ))
                 }
+
+                <div>
+                    <label>
+                        <input type="checkbox" checked={this.state.checked} onChange={() => {
+                            this.setState({ checked: !this.state.checked }, () => {
+                                this.setState({ showContet: !this.state.checked })
+                            })
+                        }
+                        } />
+                    </label> Meu cheque
+                    {this.state.showContet && <div>Meu Conteudo</div>}
+                </div>
 
             </div >
         )
